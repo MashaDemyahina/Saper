@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
-using static Model.Data.XML_SerializerList;
+using static Model.Data.SerializerXMLTOP;
 
 namespace Model.Data
 {
@@ -33,33 +33,33 @@ namespace Model.Data
             return top_top;
         }
 
-        public void Serialize(int top_1)
+        public void Serialize(int result)
         {
             MathOperation operation = SelectFile;
             string FilePath = operation($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}/top");
             int[] text = Deserialize();
             Array.Resize(ref text, text.Length + 1);
-            text[text.Length - 1] = top_1;
-            int[] new_top = text;
+            text[text.Length - 1] = result;
+            int[] newtop = text;
 
-            for (int j = 0; j < new_top.Length; j++)
+            for (int j = 0; j < newtop.Length; j++)
             {
-                for (int i = 0; i < new_top.Length - 1; i++)
+                for (int i = 0; i < newtop.Length - 1; i++)
                 {
-                    if (new_top[i] < new_top[i + 1])
+                    if (newtop[i] < newtop[i + 1])
                     {
-                        int x = new_top[i];
-                        new_top[i] = new_top[i + 1];
-                        new_top[i + 1] = x;
+                        int x = newtop[i];
+                        newtop[i] = newtop[i + 1];
+                        newtop[i + 1] = x;
                     }
                 }
             }
-            new_top = new_top.Take(10).ToArray();
-            var xml = new XML_SerializerList();
-            xml.Serializer_top_10(new_top);
+            newtop = newtop.Take(10).ToArray();
+            var xml = new SerializerXMLTOP();
+            xml.Serializer_top_10(newtop);
             Top top = new Top
             {
-                Top_10 = new_top
+                Top_10 = newtop
 
             };
             string js = JsonConvert.SerializeObject(top);

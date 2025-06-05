@@ -15,20 +15,20 @@ namespace Model.Core
     public interface ISerialize
     {
         bool SetFilePath(string filePath);
-        void Save(Sizes world);
-        void Load(Sizes world);
+        void Save(Sizes siziki);
+        void Load(Sizes siziki);
     }
     public abstract class Serializer : ISerialize
     {
         //private static int count;
-        protected string FileP;
+        protected string FilePath;
         public bool SetFilePath(string filePath)
         {
             if (filePath == null) filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            FileP = Path.Combine(filePath, "save");
+            FilePath = Path.Combine(filePath, "save");
             return File.Exists(filePath);
         }
-        public virtual void Save(Sizes world) { }
-        public virtual void Load(Sizes world) { }
+        public virtual void Save(Sizes siziki) { }
+        public virtual void Load(Sizes siziki) { }
     }
 }

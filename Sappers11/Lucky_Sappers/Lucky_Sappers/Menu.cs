@@ -116,7 +116,7 @@ namespace Lucky_Sappers
             {
                 if (selectedText == "json")
                 {
-                    var xml = new XML_SerializerList();
+                    var xml = new SerializerXMLTOP();
                     var json = new JSON_SerializerList();
 
                     text = xml.Deserialize();
@@ -125,7 +125,7 @@ namespace Lucky_Sappers
                 }
                 else // XML
                 {
-                    var xml = new XML_SerializerList();
+                    var xml = new SerializerXMLTOP();
                     var json = new JSON_SerializerList();
                     text = json.Deserialize();
                     xml.Serializer_top_10(text);

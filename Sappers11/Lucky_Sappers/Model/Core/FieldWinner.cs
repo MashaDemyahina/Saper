@@ -56,7 +56,7 @@ namespace Model.Core
         }
         public void RevealAllBombs()
         {
-            if (!firstClickOccurred)
+            if (!firstClick)
             {
                 StartTimer();
             }

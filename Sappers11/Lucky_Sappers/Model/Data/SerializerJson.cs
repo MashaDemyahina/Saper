@@ -12,18 +12,18 @@ namespace Model.Data
 {
     public class JsonSerializer : Serializer
     {
-        public override void Save(Sizes world)
+        public override void Save(Sizes siziki)
         {
-            SetFilePath(FileP);
-            var json = JObject.FromObject(new SizeDTO(world));
+            SetFilePath(FilePath);
+            var json = JObject.FromObject(new SizeDTO(siziki));
 
-            File.WriteAllText(FileP, json.ToString());
+            File.WriteAllText(FilePath, json.ToString());
         }
-        public override void Load(Sizes world) 
+        public override void Load(Sizes siziki) 
         {
-            var content = File.ReadAllText(FileP);
+            var content = File.ReadAllText(FilePath);
 
-            world.LoadW();
+            siziki.LoadW();
         }
     }
 }

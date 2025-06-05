@@ -16,7 +16,7 @@ namespace Model.Core
         public int Level { get; }
         public bool Lose { get; private set; }
         public bool Win {  get; private set; }
-        private bool firstClickOccurred;
+        private bool firstClick;
         public int Timer {  get; set; }
         
         public Sizes(int width, int height, int level, int Time)
@@ -47,12 +47,12 @@ namespace Model.Core
         }
         private void BombPlace(double level)// расстановка бомб 
         {
-            var rng = new Random();
+            var random = new Random();
             var bombiki = 0;
             while (bombiki < Counter)
             {
-                int x = rng.Next(0, Width);
-                int y = rng.Next(0, Height);
+                int x = random.Next(0, Width);
+                int y = random.Next(0, Height);
 
                 if (Kletochka[x, y] is Empty) // Проверяем, что клетка пустая
                 {
@@ -63,7 +63,7 @@ namespace Model.Core
         }
         private bool CheckBomb(int bombX, int bombY)
         {
-            int emptyCellsAround = 0;
+            int emptyKletkaAround = 0;
 
             // Проверяем все 8 соседних клеток
             for (int dx = -1; dx <= 1; dx++)
@@ -79,16 +79,16 @@ namespace Model.Core
                     if (nx >= 0 && nx < Width && ny >= 0 && ny < Height &&
                         Kletochka[nx, ny] is Empty)
                     {
-                        emptyCellsAround++;
+                        emptyKletkaAround++;
 
                         // Если уже нашли 3 подходящие клетки - можно выходить
-                        if (emptyCellsAround >= 3)
+                        if (emptyKletkaAround >= 3)
                             return true;
                     }
                 }
             }
 
-            return emptyCellsAround >= 3;
+            return emptyKletkaAround >= 3;
         }
         public void RevealCell(int x, int y)
         {
